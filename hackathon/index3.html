@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_package_v0.16/apple-touch-icon.png" >
+     <link rel="icon" type="image/png" sizes="32x32" href="/favicon_package_v0.16/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="/favicon_package_v0.16/favicon-16x16.png">
+     <link rel="manifest" href="/favicon_package_v0.16/site.webmanifest">
+     <link rel="mask-icon" href="/favicon_package_v0.16/safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#bddaff">
+            <meta name="theme-color" content="#ffffff">
+            <link rel="stylesheet" href="/styles.css">
+            <!-- d3 -->
+            <script src="https://d3js.org/d3.v6.min.js"></script>
+            <!-- google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+            <!-- bootstrap icons  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+                <title>Recharge points</title>
+
+        <!-- leaflet css  -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+           /* CSS */
+            #map-container {
+                width: 100%;          /* Set the width of the parent container to 100% */
+                height: 100vh;        /* Set the height of the parent container to 100vh */
+                display: flex;        /* Use flexbox to center its child vertically and horizontally */
+                justify-content: center; /* Center horizontally */
+                align-items: center;     /* Center vertically */
+            }
+
+            #map {
+                width: 80%;           /* Set the width of the map container */
+                height: 80vh;         /* Set the height of the map container */
+            }
+
+
+            .coordinate {
+                position: absolute;
+                bottom: 10px;
+                right: 50%;
+            }
+
+            .leaflet-popup-content-wrapper {
+                background-color: #000000;
+                color: #fff;
+                border: 1px solid red;
+                border-radius: 0px;
+            }
+            #button-container {
+            position: absolute;
+            top: 80%; /* Adjust this value to position the button vertically */
+            right: 50px;
+            text-align: right;
+        }
+
+        #myButton {
+            padding: 10px 20px;
+            height:50px;
+            width:200 px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        </style>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+
+    <body>
+
+        <section class='coloredsec'>
+            <div class="container-fluid ">
+                <nav class="navbar navbar-expand-md navbar-dark">
+        
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"  fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                    <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+                    </svg>
+                    <a class="navbar-brand"> sarovar</a>
+        
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                        <a class="nav-link" href="/index.html"> HOME</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+            </nav>
+        
+        <div>
+            
+            <h1> <svg xmlns="http://www.w3.org/2000/svg" width="50" height="5" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg>  Recharge points</h1>
+        </div>
+
+        <div id="map-container">
+            <div id="map"></div>
+        
+            <div class="leaflet-control coordinate"></div>
+            <div id="button-container">
+                <button id="myButton" onclick="toggleGoogleSatellite()">Flip</button>
+            </div>
+        </div>
+        </section>
+
+
+
+         <!-- Footer -->
+
+            <footer id="footer" class='whitesec'>
+                <div class='social'>
+                <button class='socialbtn btn' type=button><i class="bi bi-twitter "> </i></button>
+                <button class='socialbtn btn'type=button ><i class="bi bi-instagram"></i></button>
+                <button class='socialbtn btn' ><i class="bi bi-envelope-fill"></i></button>
+                <button class='socialbtn btn' ><i class="bi bi-linkedin"></i></button>
+                </div>
+
+                <p class='ftxt'>© Copyright Sarovar</p>
+
+            </footer>
+
+
+
+    </body>
+
+    </html>
+
+    <!-- leaflet js  -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+
+
+    <script>
+        // Map initialization 
+       // var map = L.map('map').setView([12.9716, 77.5946], 8);
+       var map = L.map('map', {
+    maxBounds: [
+        [12.70, 77.40], // Southwest corner of Bangalore
+        [13.15, 77.80]  // Northeast corner of Bangalore
+    ]
+    }).setView([12.9716, 77.5946], 12); // Set an initial zoom level for Bangalore
+
+
+
+        /*==============================================
+                    TILE LAYER and WMS
+        ================================================*/
+        //osm layer
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+        osm.addTo(map);
+        // map.addLayer(osm)
+
+    
+
+        
+
+        // google street 
+        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+         //googleStreets.addTo(map);
+
+        //google satellite
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+        //googleSat.addTo(map)
+
+        var wms = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+            layers: 'geoapp:admin',
+            format: 'image/png',
+            transparent: true,
+            attribution: "wms test"
+        });
+        
+
+
+
+        /*==============================================
+                            MARKER
+        ================================================*/
+        var myIcon = L.icon({
+            iconUrl: "/red-marker.jpg",
+            iconSize: [40, 40],
+        });
+        var singleMarker = L.marker([12.9355827, 77.70578219999993], { icon: myIcon, draggable: true });
+        var popup = singleMarker.bindPopup('Panathur main road ' + singleMarker.getLatLng()).openPopup()
+        popup.addTo(map);
+
+        var secondMarker = L.marker([12.9520, 77.7209], { icon: myIcon, draggable: true });
+        var popup2 = secondMarker.bindPopup('Thubarahalli ' + secondMarker.getLatLng()).openPopup()
+        popup2.addTo(map);
+        var thirdMarker=L.marker([13.023513205352579, 77.6442942912522],{ icon: myIcon, draggable: true });
+        var popup3=thirdMarker.bindPopup('Kalyan nagar ring road ' + thirdMarker.getLatLng()).openPopup()
+        popup3.addTo(map);
+        var fourthMarker=L.marker([13.0170 , 77.7044 ],{ icon: myIcon, draggable: true });
+        var popup4=fourthMarker.bindPopup('KR PURAM ' + fourthMarker.getLatLng()).openPopup()
+        popup4.addTo(map);
+        var fifthMarker=L.marker([12.9880, 77.6895 ],{ icon: myIcon, draggable: true });
+        var popup5=fifthMarker.bindPopup('MAHADEVPURA ' + fifthMarker.getLatLng()).openPopup()
+        popup5.addTo(map);
+        var sixthMarker=L.marker([12.9745, 77.6806 ],{ icon: myIcon, draggable: true });
+        var popup6=sixthMarker.bindPopup('VIGNAN NAGAR ' + sixthMarker.getLatLng()).openPopup()
+        popup6.addTo(map);
+        var seventhMarker=L.marker([12.967576, 77.7150877 ],{ icon: myIcon, draggable: true });
+        var popup7=seventhMarker.bindPopup('ITPL MAIN ROAD ' + seventhMarker.getLatLng()).openPopup()
+        popup7.addTo(map);
+        var eightthMarker=L.marker([12.9974 , 77.6696],{ icon: myIcon, draggable: true });
+        var popup8=eightthMarker.bindPopup('tin factory ' + eightthMarker.getLatLng()).openPopup()
+        popup8.addTo(map);
+        var ninthMarker=L.marker([12.9673, 77.6433],{ icon: myIcon, draggable: true });
+        var popup9=ninthMarker.bindPopup('bellandur ' + ninthMarker.getLatLng()).openPopup()
+        popup9.addTo(map);
+        var tenthMarker=L.marker([12.9304 , 77.6784],{ icon: myIcon, draggable: true });
+        var popup10=tenthMarker.bindPopup('hal second stage ' + tenthMarker.getLatLng()).openPopup()
+        popup10.addTo(map);
+        var eleventhMarker=L.marker([12.9721, 77.6944],{ icon: myIcon, draggable: true });
+        var popup11=eleventhMarker.bindPopup('doddanekundi ' + eleventhMarker.getLatLng()).openPopup()
+        popup11.addTo(map);
+        var twelfthMarker=L.marker([12.9558, 77.7409],{ icon: myIcon, draggable: true });
+        var popup12=twelfthMarker.bindPopup('ramangaondanahalli ' + twelfthMarker.getLatLng()).openPopup()
+        popup12.addTo(map);
+        var thirteenthMarker=L.marker([13.02225 , 77.630241],{ icon: myIcon, draggable: true });
+        var popup13=thirteenthMarker.bindPopup('hennur road ' + thirteenthMarker.getLatLng()).openPopup()
+        popup13.addTo(map);
+        var fourteenthMarker=L.marker([12.9446234,	77.6836686],{ icon: myIcon, draggable: true });
+        var popup14=fourteenthMarker.bindPopup('yemalur ' + fourteenthMarker.getLatLng()).openPopup()
+        popup14.addTo(map);
+        var fifteenthMarker=L.marker([13.0326, 77.6583],{ icon: myIcon, draggable: true });
+        var popup15=fifteenthMarker.bindPopup('horamavu ' + fifteenthMarker.getLatLng()).openPopup()
+        popup15.addTo(map);
+        var sixteenthMarker=L.marker([12.9334, 77.5609],{ icon: myIcon, draggable: true });
+        var popup16=sixteenthMarker.bindPopup('viyapeeta ' + sixteenthMarker.getLatLng()).openPopup()
+        popup16.addTo(map);
+        
+        
+
+
+        
+
+        console.log(singleMarker.toGeoJSON())
+
+
+        /*==============================================
+                    GEOJSON
+        ================================================*/
+       
+
+
+        /*==============================================
+                        LAYER CONTROL
+        ================================================*/
+        
+
+
+        /*==============================================
+                        LEAFLET EVENTS
+        ================================================*/
+        map.on('mouseover', function () {
+            console.log('your mouse is over the map')
+        })
+
+        map.on('mousemove', function (e) {
+            document.getElementsByClassName('coordinate')[0].innerHTML = 'lat: ' + e.latlng.lat + 'lng: ' + e.latlng.lng;
+            console.log('lat: ' + e.latlng.lat, 'lng: ' + e.latlng.lng)
+        })
+
+
+        /*==============================================
+                        STYLE CUSTOMIZATION
+        ================================================*/
+        function toggleGoogleSatellite() {
+            if (map.hasLayer(googleSat)) {
+                map.removeLayer(googleSat);
+            } else {
+                googleSat.addTo(map);
+            }
+        }
+
+    </script>

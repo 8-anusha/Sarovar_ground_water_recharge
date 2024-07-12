@@ -1,0 +1,374 @@
+body{
+    font-family: "Montserrat";
+    text-align:center;
+  }
+  
+  h1,h2,h3,h4,h5,h6{
+    font-family:"Montserrat" ;
+    font-weight: 900;
+  
+  }
+  
+  
+  #title{
+    text-align: left
+  }
+  /* sections */
+  .coloredsec{
+  background-color: #213555; 
+  color:#ffff;
+  }
+  .whitesec{
+  background-color: #F0F0F0;
+  }
+  
+  
+  /* headings */
+  .bigheading{
+    font-family:"Montserrat" ;
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;
+  }
+  
+  .container-fluid{
+    padding: 3% 5% 7%;
+  
+  }
+  /* navigation bar */
+  .navbar{
+    padding-bottom: 4.5rem;
+  }
+  
+  .navbar-brand{
+    font-family: "Ubuntu";
+  font-size :2.2rem;
+  
+  }
+  
+  .nav-item{
+    padding: 0 18px ;
+  }
+  .nav-link{
+    font-size:1.2rem;
+    font-weight: 300;
+  }
+  
+  /* buttons */
+  .dbtn{
+    margin: 5% 5% 5% 0;
+  }
+  
+  .timg{
+    height: auto;
+    width: 48%;
+    position: absolute;
+    padding: 10px;
+  
+  }
+  /* features section */
+  h3{
+    font-family:"Montserrat" ;
+     font-weight:bolder;
+     font-size: 1.5rem;
+  }
+  
+  p{
+    color:#8f8f8f;
+  }
+  #features{
+    padding: 3% 15%;
+  
+    position: relative;
+  
+  
+  }
+  .feature-box{
+    padding: 5%;
+  
+  }
+  
+  .icon{ color:#607EAA;
+    
+  
+  }
+  .icon:hover{color: #1C3879;}
+  
+  /* testimonial */
+  /* #map{
+    background-color :#607EAA;
+  } */
+  #testimonials{
+    background-color :#607EAA;
+
+  }
+  
+  .testimonial-text{
+    font-weight: bolder;
+    line-height: 1.5;
+    font-size: 2.5rem;
+  
+  }
+  
+  .testim-img{
+    width:15%;
+    border-radius: 100%;
+    margin: 20px;
+  }
+  #press{
+      background-color :#607EAA;
+  
+      padding-bottom: 5%;
+  }
+  .logo{
+    width: 15%;
+    padding: 10px;
+  }
+  .carousel-item{
+    padding:7% 15%;
+  }
+  
+  /* pricing section */
+  /* #pricing{
+    padding: 7% 15%;
+  
+  }
+  .pricingcol{padding:5% 2%;} */
+  
+  @media (max-width: 930px)
+  {
+    #title{
+        text-align: center;
+  
+      }
+  
+    .title-text-container{
+      width:100%
+    }
+  
+    .title-img-container{
+        width: 100%;
+        position:static;
+      }
+  
+      .timg{
+        width: 50%;
+        position:static;
+        transform: rotate(0);
+      }
+      }
+  
+      #cta{
+  
+        font-size: 2rem;
+  
+        padding: 7% 15%;
+  
+      }
+      .endtxt{
+        font-size: 2.5rem;
+        padding:0 3% ;
+        font-weight: bolder;
+  
+  
+      }
+  
+     
+      /* faqs */
+      /* @import url("https://fonts.googleapis.com/css?family=Montserrat"); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #34495e;
+  color: #fff;
+}
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+} */
+
+.accordion {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+.accordion-item {
+  background-color:#F0F0F0;
+  color: #0e0d0d;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.accordion-item-header {
+  padding: 0.5rem 3rem 0.5rem 1rem;
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.accordion-item-header::after {
+  content: "\002B";
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+}
+.accordion-item-header.active::after {
+  content: "\2212";
+}
+.accordion-item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.accordion-item-body-content {
+  padding: 1rem;
+  line-height: 1.5rem;
+  border-top: 1px solid;
+  border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+/* @media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+} */
+/* map */
+.responsive-map{
+
+  overflow: hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+
+  }
+  .responsive-map iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+  }
+
+  /* concerns */
+.concernp{
+  padding: 5%;
+  color: #ffff;
+}  
+
+
+
+
+/* *, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+} */
+/* 
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+} */
+
+form {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background:#607EAA;
+  border-radius: 8px;
+}
+/* 
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+} */
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 14px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #FFF;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+
+
+select {
+  padding: 2px;
+  height: 22px;
+  border-radius: 2px;
+}
+
+ .signupbtn{
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 20px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+} 
+
+
+legend {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+
+
+#footer{
+  padding: 7% 15%;
+}
+
+.socialbtn{
+  border:None;
+  background-color: #ffff;
+  color: #767676;
+
+
+}
+  
+
+
